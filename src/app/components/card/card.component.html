@@ -1,0 +1,17 @@
+<div class="card h-100">
+    <img
+      class="card-img-top"
+      src="{{product.img}}"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">
+        {{product.name}}
+      </h5>
+      <p class="card-text">
+        {{product.description}}
+      </p>
+      <p class="price my-2">Rs. {{product.price}}</p>
+      <a class="btn btn-primary" (click)="addToCart()">Add to Cart</a>
+    </div>
+  </div>
