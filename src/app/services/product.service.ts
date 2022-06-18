@@ -98,8 +98,8 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getAllProducts() {
-    // return this.initialProducts;
-    return this.http.get(`http://localhost:9085/get/all`);
+    return this.initialProducts;
+    // return this.http.get(`http://localhost:9085/get/all`);
   }
 
   addProduct(product: Product) {
@@ -111,6 +111,6 @@ export class ProductService {
     //   img: product.img,
     //   description: product.description,
     // });
-    return this.http.post(`http://localhost:9085/add`,product);
+    return this.http.post(`http://localhost:9085/api/mamaearth/add`,product);
   }
 }

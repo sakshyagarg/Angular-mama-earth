@@ -10,23 +10,16 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  initialProducts!: Product[];
+  initialProducts!: Product[]; 
   products: Product[] = [];
   currentRoute: string = '';
   title: string = '';
   constructor(private router: Router, private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getAllProducts().subscribe({
-      next: (response: any) => {
-        this.initialProducts = response;
-      },
-      error: (error: any) => {
-        console.log(error);
-      },
-    });
+    this.initialProducts = this.productService.getAllProducts();
     console.log(this.initialProducts);
-
+    
     this.currentRoute = this.router.url.replace('/', '');
     if (this.currentRoute === '') {
       this.title = 'Bestseller';

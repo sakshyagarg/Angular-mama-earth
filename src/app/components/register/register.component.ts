@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -9,11 +11,15 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   errorMessage: string = '';
   userForm = {
-    email: '',
+    username: '',
     password: '',
     confirmPassword: '',
   };
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -30,6 +36,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.router.navigate(['/login']);
+    this.authService.register(this.userForm).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.router.navigate(['/login']);
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
   }
 }

@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
       <div class="col-6 mb-3">
         <label class="form-label">Email</label>
-        <input type="email" class="form-control" name="email" required minlength="3" [(ngModel)]="user.email" #email="ngModel"/>
+        <input type="email" class="form-control" name="email" required minlength="3" [(ngModel)]="user.username" #email="ngModel"/>
         <small class="text-danger" *ngIf="!email.valid">Email is required</small>
       </div>
     </div>

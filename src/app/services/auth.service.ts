@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -5,11 +6,12 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   login(user: any) {
-    localStorage.setItem('username', user.email);
-    this.router.navigate(['']);
+    return this.http.post(`http://localhost:9085/api/auth/login`,user)
+    // localStorage.setItem('username', user.email);
+    // this.router.navigate(['']);
   }
 
   isLoggedIn(): boolean {
@@ -19,5 +21,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('username');
     this.router.navigate(['']);
+  }
+
+  register(userForm: any) {
+    return this.http.post(`http://localhost:9085/api/auth/register`,userForm);
   }
 }
